@@ -1,2 +1,16 @@
-<h1>StaticPages#home</h1>
-<p>Find me in app/views/static_pages/home.html.erb</p>
+<h1>Url shortener application</h1>
+<p>
+This is the Url shortener application that shortens the given link.
+Please enter the link you wish to shorten:
+</p>
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <%= form_with(model: @url, local: true) do |f| %>
+
+        <%= f.label :url %>
+        <%= f.text_field :url, class: 'form-control' %>
+
+        <%= f.submit "Submit url", class: "btn btn-primary" %>
+      <% end %>
+  </div>
+</div>
