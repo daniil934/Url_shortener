@@ -1,15 +1,9 @@
-<p>
-This is the Url shortener application that shortens the given link.
-Please enter the link you wish to shorten:
-</p>
-<div class="row">
-    <div class="col-md-6 col-md-offset-3">
-      <%= form_with(model: @url, local: true) do |f| %>
+<h1>All urls</h1>
 
-        <%= f.label :url %>
-        <%= f.text_field :url, class: 'form-control' %>
-
-        <%= f.submit "Submit url", class: "btn btn-primary" %>
-      <% end %>
-  </div>
-</div>
+<ul class="urls">
+  <% @urls.each do |url| %>  
+  <li>
+    <%=  url.full_url %>
+  </li>
+  <% end %>
+</ul>

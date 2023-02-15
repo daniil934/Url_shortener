@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
   root 'static_pages#home'
-  resources :urls
+  post "/urls/new", to: "urls#create"
+  resources :urls, only: [:index, :new, :edit, :show]
 end
