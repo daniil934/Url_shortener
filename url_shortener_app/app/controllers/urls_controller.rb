@@ -10,10 +10,22 @@ class UrlsController < ApplicationController
 
   def create
     @url = Url.new(url_params)
-    if @url.save
-      @url.update_attribute(:short_url, generate_short_url)
+    if params[:url][:full_url]
+      if @url.save
+        @url.update_attribute(:short_url, generate_short_url)
+      else
+        flash[:danger] = "Incorrect link"
+        redirect_to root_url
+        # render 'new'
+      end
+    elsif params[:url][:short_url]
+      @url = Url.find_by(short_url: params[:url][:short_url])
+      # flash[:success] = "#{@url.full_url}"
+      # redirect_to root_url
     else
-      render 'new'
+      # render 'new'
+      flash[:danger] = "Incorrect shortened link"
+      redirect_to root_url
     end
   end
 
