@@ -13,21 +13,23 @@ class UrlsController < ApplicationController
     if params[:url][:full_url]
       if @url.save
         @url.update_attribute(:short_url, generate_short_url)
+        flash[:success] = "#{@url.short_url}"
+        redirect_to root_url  
       else
         flash[:danger] = "Incorrect link"
         redirect_to root_url
-        # render 'new'
       end
     elsif params[:url][:short_url]
       @url = Url.find_by(short_url: params[:url][:short_url])
-      # flash[:success] = "#{@url.full_url}"
-      # redirect_to root_url
-    else
-      # render 'new'
-      flash[:danger] = "Incorrect shortened link"
-      redirect_to root_url
+      if !@url.nil? && @url.short_url == params[:url][:short_url]
+        flash[:success] = "#{@url.full_url}"
+        redirect_to root_url
+      else
+        flash[:danger] = "Incorrect shortened link"
+        redirect_to root_url  
+      end
     end
-  end
+  end 
 
   def show
     @url = Url.find(params[:id])
