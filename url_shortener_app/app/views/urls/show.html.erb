@@ -1,9 +1,6 @@
-<% unless @url.short_url.nil? %>
-  <h1>Your shortened url</h1>
-  <%#= @url.full_url %>
-  <%= link_to @url.short_url, @url.full_url %>
-<% else %>
-   <h1>Your full url</h1>
-   <%= link_to @url.full_url %>
-<% end %>
+<h1>Your shortened url</h1>
+<%= @url.full_url %>
+<%= link_to @url.short_url, @url.full_url %>
+
+
 
