@@ -16,6 +16,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_13_185047) do
     t.string "short_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["full_url"], name: "index_urls_on_full_url", unique: true
     t.index ["short_url"], name: "index_urls_on_short_url", unique: true
   end
 
