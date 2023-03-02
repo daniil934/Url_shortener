@@ -1,9 +1,9 @@
 class ShortUrlsController < ApplicationController
 
   def new
-    @url = Url.find_by(short_url: params[:short_url])
-    flash[:success] = "#{@url.full_url}"
-    redirect_to short_url_url(@url)
+    # @url = Url.find_by(short_url: params[:short_url])
+    # flash[:success] = "#{@url.full_url}"
+    # redirect_to short_url_url(@url)
   end
 
   def create
@@ -20,7 +20,7 @@ class ShortUrlsController < ApplicationController
   end
   
   def show
-    @url = Url.find(params[:id])
+    # @url = Url.find(params[:id])
   end
 
   private

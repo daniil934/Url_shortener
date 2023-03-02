@@ -10,19 +10,13 @@ class UrlsController < ApplicationController
 
   def create
     @new_short_url = generate_short_url
-    @url = Url.find_by(full_url: params[:url][:full_url])
-    if !@url.nil?
-      flash[:success] = "Your link was already shortened: #{@url.short_url}"
+    @url = Url.create_with(short_url: @new_short_url).find_or_create_by(full_url: params[:url][:full_url])
+    if @url.save 
+      flash[:success] = "#{@url.short_url}"
       redirect_to @url  
-    else 
-      @url = Url.new(url_params.merge(short_url: @new_short_url))
-      if @url.save 
-        flash[:success] = "#{@url.short_url}"
-        redirect_to root_url  
-      else
+    else
       flash[:danger] = "Incorrect link"
       redirect_to root_url
-      end
     end
   end 
 
