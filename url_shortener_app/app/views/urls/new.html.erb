@@ -1,0 +1,17 @@
+<h1>Url shortener application</h1>
+<p>
+Please enter the link you wish to shorten:
+</p>
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <%= form_with(model: @url, url: urls_new_path, method: "post", local: true) do |f| %>
+
+        <%= f.label :full_url %>
+        <%= f.text_field :full_url, class: 'form-control' %>
+
+        <%#= hidden_field_tag :short_url, @url.short_url %>
+
+        <%= f.submit "Submit url", class: "btn btn-primary" %>
+      <% end %>
+  </div>
+</div>
