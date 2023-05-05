@@ -22,7 +22,6 @@ class UrlsController < ApplicationController
 
   def show
     @url = Url.find(params[:id])
-    # @url = Url.find_by(short_url: params[:url][:short_url])
   end
 
   def edit 
